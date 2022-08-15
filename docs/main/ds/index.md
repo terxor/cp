@@ -2,7 +2,7 @@
 layout: page
 title: Data Structures
 has_children: true
-nav_order: 0
+nav_order: 1
 ---
 
 A data structure can be collectively defined in terms of how data is stored, operations
