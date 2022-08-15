@@ -6,8 +6,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: terxor
 
-# Build settings
-theme: just-the-docs
+remote_theme: pmarsceill/just-the-docs
 
 compress_html:
   blanklines: true
@@ -17,6 +16,9 @@ kramdown:
   math-engine: katex
   input: GFM
   syntax_highlighter: rouge
+
+plugins:
+    - jekyll-seo-tag
 
 # Exclude from processing.
 # The following items will not be processed, by default.
