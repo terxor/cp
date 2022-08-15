@@ -1,0 +1,39 @@
+title: Team xVenom CP
+description: >- # this means to ignore newlines until "baseurl:"
+  A collection of competitive programming related resources primarily
+  for personal reference, hosted for convenient access.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+github_username: terxor
+
+# Build settings
+theme: just-the-docs
+
+compress_html:
+  blanklines: true
+
+markdown: kramdown
+kramdown:
+  math-engine: katex
+  input: GFM
+  syntax_highlighter: rouge
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
