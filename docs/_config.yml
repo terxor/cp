@@ -2,8 +2,8 @@ title: Team xVenom CP
 description: >- # this means to ignore newlines until "baseurl:"
   A collection of competitive programming related resources primarily
   for personal reference, hosted for convenient access.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/cp" # the subpath of your site, e.g. /blog
+url: "https://terxor.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: terxor
 
 remote_theme: pmarsceill/just-the-docs
