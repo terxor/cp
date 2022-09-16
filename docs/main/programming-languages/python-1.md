@@ -147,7 +147,7 @@ for y in range(20):
 print(y) # 10
 
 # Existing variables can be used in 'for' loop
-# Even if the variable is manipulated in 'for' loop, it's value
+# Even if the variable is manipulated in 'for' loop, its value
 # is restored in next iteration
 z = 10; print(z) # 10
 for z in range(5):
