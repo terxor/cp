@@ -44,6 +44,10 @@ print(x[-2:], x[:-2])
 # in first part: start from second last element
 # in second part: till second last element, excluding
 
+# For lists, sublist assignment can be done
+a = [1, 2, 3, 4]
+a[1:3] = [7, 8]
+print(a) # [1, 7, 8, 4]
 ```
 
 ### Iterable unpacking operator

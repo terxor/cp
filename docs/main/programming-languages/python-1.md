@@ -27,6 +27,9 @@ print(type(g)) # <class 'tuple'>
 # Un-assign or un-define
 del f
 print(f) # NameError: name 'f' is not defined
+
+# Swapping variables
+a, b = b, a # 2 "Hello"
 ``` 
 
 ### Operators
