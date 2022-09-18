@@ -9,9 +9,9 @@ math: true
 
 ### Subscript notation
 
-For some list or string `x`, subscript notation can be used a `x[start:end:step]`
+For some list or string `x`, subscript notation can be used, to get a sub-list, as `x[start:end:step]`
 where `start`, `end` and `step` are integers. `end` is exclusive, meaning that
-the range [`start`, `end - 1`] is considered.
+the range `[start, end - 1]` is considered.
 
 ```python
 s = "yneos"
@@ -49,7 +49,7 @@ print(x[-2:], x[:-2])
 ### Iterable unpacking operator
 
 Iterable unpacking holds its usual meaning.
-We can think of it as substituing the iterable by
+We can think of it as substituting the iterable by
 comma separated list of elements.
 
 ```python
