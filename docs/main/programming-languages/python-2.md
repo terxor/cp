@@ -464,7 +464,7 @@ for x in d: print(x) # deque is an iterable
 
 ### Utility
 
-Permutations and combintations:
+#### Permutations and combintations
 ```python
 from itertools import permutations, combinations
 
@@ -484,7 +484,24 @@ print(["".join(c) for c in combinations("abc", 2)])
 
 ```
 
-Min/max with iterables
+#### Counter
+```python
+# A special kind of dictionary for
+# computing frequencies
+from collections import Counter
+a = [2, 1, 4, 5, 4, 5, 4]
+c = Counter(a)
+print(c.keys())
+# dict_keys([2, 1, 4, 5])
+print(c.values())
+# dict_values([1, 1, 3, 2])
+print(c.items())
+# dict_items([(2, 1), (1, 1), (4, 3), (5, 2)])
+print(c.most_common(2))
+# [(4, 3), (5, 2)]
+```
+
+#### Min/max with iterables
 ```python
 x = [-1, 2, -3]
 m = min(abs(t) for t in x)
@@ -495,7 +512,7 @@ m = min([-1, 2, -3])
 # m = -3
 ```
 
-Utility method `any`:
+#### Utility method `any`:
 ```python
 x = any([False, True, False])
 # x = True
@@ -506,7 +523,7 @@ y = any(t % 2 == 0 for t in a)
 # y = True
 ```
 
-Utility methods `all`:
+#### Utility methods `all`:
 ```python
 x = all([False, True, False])
 # x = False
@@ -522,7 +539,7 @@ y = all(x)
 # y = True
 ```
 
-Math:
+#### Math:
 ```python
 # inbuilt functions
 print(abs(-2)) # 2, int
@@ -546,4 +563,14 @@ import math
 a = math.floor(1.5) # 1
 b = math.ceil(1.5) # 2
 c = math.sqrt(16) # 4.0
+```
+
+#### Dealing with deep recursive problems:
+
+Suppose you are dealing with recursion of high depth like $10^5$, you have
+to use this snipper otherwise `RecursionError: maximum recursion depth exceeded in comparison`
+will be thrown during execution.
+```python
+import sys
+sys.setrecursionlimit(100000)
 ```
