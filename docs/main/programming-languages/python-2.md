@@ -510,6 +510,12 @@ m = min(abs(t) for t in x)
 # Or with lists
 m = min([-1, 2, -3])
 # m = -3
+
+# With custom key function
+m = min([1, 2, 3, 4], key = lambda x: x if x % 2 == 0 else -x)
+# Note: this is the sorted order with given lambda [3, 1, 2, 4]
+# a = [1, 2, 3, 4]
+# a.sort(key = lambda x: x if x % 2 == 0 else -x)
 ```
 
 #### Utility method `any`:
