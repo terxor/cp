@@ -1,6 +1,7 @@
 title: Team xVenom CP
 description: Competitive programming resources
 baseurl: "/cp" # the subpath of your site, e.g. /blog
+  # Change this to "" for local render
 url: "https://terxor.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: terxor
 
