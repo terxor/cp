@@ -95,13 +95,13 @@ That is: $x \ge P_1 \cdot P_2 \ldots P_{K-1}$.
 With maximum $x = 10^{16}$ we can use a loose upper bound for $K$ as $K \le 40$.
 
 But computing $f(x)$ individually is still not feasible.
-Let's analyse the possible values of $f(1), \ldots, f(n)$.
+Let's analyse the possible values of $f(1), \ldots, f(N)$.
 These can be:
 - $\{ P_i^1, \ldots,P_i^{t} \}$ where $1 \le i \lt K$ and $P_i^{t} \le n$.
 
 This is still a small set of values which gives us a 
 possibility to check for each value how many times it will
-occur in $f(1), \ldots, f(n)$.
+occur in $f(1), \ldots, f(N)$.
 
 $f(x) = P_i^t$ when $P_1,\ldots,P_i$  occur in factorization of $x$ with the constraint
 that $P_i$ occurs exactly $t-1$ times. Thus,

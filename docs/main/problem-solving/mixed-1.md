@@ -134,8 +134,8 @@ say by recursion (limiting the depth to 12).
 *Jumps* 
 
 You are given integers $a_1,\ldots,a_n$. Find the minimum number of jumps to
-reach index $n$ given that when you are at index $i$, you can make jump at  $j
-\quad\forall j, i \le j \le min(i + a_j, n)$.
+reach index $n$ given that when you are at index $i$, you can jump to
+$i + j$ (but not beyond $n$) $\forall$  $1 \le j \le a_i$.
 Initially you are at index $1$.
 
 Constraints: $1 \le n, a_i \le 10^5$
@@ -143,6 +143,9 @@ Constraints: $1 \le n, a_i \le 10^5$
 **Solution**
 
 Let $f_i$ be: Minimum jumps required to reach index $i$ from index $1$
+
+Then $f_i = 1 + \min(f_j)$ $\forall$ $
+
 Let's use a greedy strategy for computing $f_i$:
 $f_i = 1 + min(f_j)$ such that $a_j + j \ge i$ and $j$ is minimum possible
 Note that the term $a_j + j$ denotes the max reachable index from index $j$.
