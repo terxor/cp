@@ -42,7 +42,7 @@ To find all primes upto $N$:
 1. Numbers which are not crossed out are primes.
 
 which can be implemented as:
-``cpp
+```cpp
 const int N = 10000;
 bitset<N> isPrime;
 vector<int> primes;
