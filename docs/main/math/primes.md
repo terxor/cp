@@ -42,7 +42,7 @@ To find all primes upto $N$:
 1. Numbers which are not crossed out are primes.
 
 which can be implemented as:
-```.cpp
+``cpp
 const int N = 10000;
 bitset<N> isPrime;
 vector<int> primes;
@@ -95,7 +95,7 @@ integer $N$ ($N \ge 2$):
 - $p$ is a prime 
 - Either $p \le \sqrt N$ or $p = N$ (in that case $N$ is a prime)
 
-```.cpp
+```cpp
 vector<int> factorize(int n) {
   vector<int> res;
   for (int i = 2; i * i <= n; i++) {
@@ -118,7 +118,7 @@ This method can be optimized by checking only odd numbers. But we need to check 
 Suppose we have generated all primes $\le M$. Then, we can
 factorize any $N \le M$ faster than trivial method.
 
-```.cpp
+```cpp
 vector<int> primes; // assume populated
 
 vector<int> factorize(int n) {
