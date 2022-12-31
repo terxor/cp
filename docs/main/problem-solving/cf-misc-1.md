@@ -63,63 +63,18 @@ Find the minimum cost to make the graph connected.
 
 **Solution**
 
-One trivial solution is to run Kruskal's algorithm $\binom{n}{2} + m$ edges but
-this would be very inefficient for large $n$ (say $n = 10^5$)
+For simplicity, assume that $a_i \le a_{i+1}$ for $1 \le i \lt n$.
 
-For simplicity, assume that $a_1 \le a_2 \ldots \le a_n$.
+We will use Kruskal's algorithm. But we will not explicitly sort all $\binom{n}{2} + m$ edges.
 
-Suppose there were no special edges. Now, it may not very hard to observe that using only the edges in which the vertex with minimum cost ($a_1$) is involved provides an optimal solution.
+Assume that we have a sorted list of edges and we are going through it.
+If we get a non-special edge, it has to contain $1$ in it (or we can swap some edge of same cost to get this condition). This is because:
+- $a_1$ is smallest among all $a_i$, thus cost of edge $(1, u)$ is not greater than cost of $(v, u)$ for any $u, v \neq 1$.
+- Suppose the edge is $(u, v)$ where $u \neq 1, v \neq 1$, then at least one of
+  $(1, u)$ or $(1, v)$ will be unused and will not cost greater.
+- For same cost edges, order doesn't matter (in Kruskal's algorithm)
 
-This is easy to prove:
-Let the optimal cost be $C$. We have
-
-$$
-C = \sum\limits_{i=1}^{n-1}{a_{u_i} + a_{v_i}}
-$$
-
-where $(u_i, v_i)$ denotes an edge used in this solution.
-
-Let the cost when using edges of form $(1, v_i), 2 \le v_i \le n$ be $C'$. We have
- 
-$$
-C' = (n-1)a_1 + \sum\limits_{i=2}^{n}{a_i}
-$$
-
-Now, in $C$ we know that for each vertex $v, 2 \le v \le n$, $a_v$ is included
-in the sum because
-each vertex is part of the graph. We can rewrite $C$ as
-
-$$
-C = \sum\limits_{i=1}^{n-1}{a_{x_i}} + \sum\limits_{i=2}^{n}{a_i}
-$$
-
-The first summation term in the above equation corresponds to left over terms
-after taking out the terms $a_2,\ldots,a_n$. Now, we can compare $C$ and $C'$
-easily and it turns out that $C' \le C$ because $a_1 \le a_i \quad\forall i, 1
-\le i \le n$.
-
-*What if there are special edges involved?*
-
-Consider the optimal solution. Remove the non-special edges from it. Let the set
-of $k$ edges removed be: $S = \{(u_i, v_i), 1 \le i \le k \}$.
-
-After this step, we will have $k+1$ connected components. Let us connect these
-components.
-Let the component of which vertex $1$ is a part be $P$.
-
-It is clear that there is no edge $(u, v)$ in $S$ such that both $u$ and $v$ are a part of $P$.
-
-Now, for each edge $(u, v)$ in $S$ in which one of $u$ or $v$ is a part of $P$: we
-can use an edge $(1, v)$ or $(u, 1)$ (depending on whether $u$ or $v$ is a part
-of $P$) to have the same effect as if $(u, v)$ was used with atmost equal cost.
-
-More precisely, we repeat until $S$ is empty: for each edge $(u, v)$ such that
-either $u$ or $v$ is a part of $P$, remove $(u, v)$ from $S$ and extend the
-component $P$ (with the newly connected component to it).
-
-We have shown that an optimal solution can be found by using only the edges of
-form $(a_1, a_i), 2 \le i \le n$ and special edges. Running Kruskal's algorithm
-on $(n-1) + m$ edges seems good enough now.
+Thus we can form optimal solution using edges of form $(1, i)$ and special edges only.
 
 ***
 
