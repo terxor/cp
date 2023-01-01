@@ -11,6 +11,8 @@ math: true
 
 *Spanning Tree with one fixed degree*
 
+*Tags: Graphs, connected components*
+
 You are given an undirected connected graph having vertices $1,\ldots,n$ with
 $m$ edges (with no self loops or multiple edges). Find any spanning tree of this
 graph such that degree of the vertex $1$ is equal to $D$ or report if it is not
@@ -51,6 +53,8 @@ BFS from the selected vertices.
 
 ### Problem 1095F
 
+*Tags: Trees, MST*
+
 *Make it connected*
 
 There are $n$ vertices $1,\ldots,n$ and integer costs $a_1,\ldots,a_n$
@@ -79,6 +83,8 @@ Thus we can form optimal solution using edges of form $(1, i)$ and special edges
 ***
 
 ### Problem 1245D
+
+*Tags: Trees, MST*
 
 *Shichikuji and power grid*
 
@@ -215,4 +221,51 @@ The time complexity becomes $O(n {Y_{MAX}}^3 \lg(X_{MAX}))$ where $Y_{MAX} = 15$
 
 ***
 
-*That is it.*
+### Problem 1101D
+
+*Tags: Number theory, tree DP*
+
+You are given a tree with $N$ nodes numbered $1$ to $N$. Node $i$
+has value $a_i$.
+
+Find the longest path $[u_1, \ldots, u_m]$ such that
+$\gcd(u_1, \ldots, u_m) > 1$.
+
+Constraints:
+- $1 \le N \le 10^5$
+- $1 \le a_i \le 10^5$
+
+**Solution**
+
+On such a path, there must be some prime $p$ which
+divides value on each node.
+
+Assume this tree is rooted at $1$.
+
+Let $f_1(u, p)$ be the length of longest path in subtree rooted at $u$, starting at $u$, such
+that for all nodes $v$ in the path it holds that $p \vert a_v$.
+
+Also let $f_2(u, p)$ be similar to $f_1$ except that is is the length of second longest path.
+This path must not have any vertex except $u$ common to longest path.
+
+Then, for some node $u$ and prime $p$ we get a path of length $f_1(u, p) + f_2(u, p) - 1$
+passing through this node (in its subtree).
+
+If we enumerate through all $u, v$, we can obtain the maximum path length.
+
+We will recursively compute $f_1$ and $f_2$ (bottom-up).
+Let $C_u$ denote set of children of $u$. For some $p$ such that
+$p \vert a_u$ we have:
+
+$$
+f_1(u, p) = 1 + \max\limits_{v \in C_u}(f_1(v, p))
+$$
+
+$f_2(u, p)$ will have the second maximum value in similar manner.
+
+Implementation points:
+- For some $u, p$ we will only compute when $p|a_u$ holds. Thus
+  for vertex $u$, we will perform $O(\lg(a_u) \cdot \vert C_u \vert)$
+  computations.
+
+***
