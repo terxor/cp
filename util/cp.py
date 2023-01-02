@@ -24,7 +24,7 @@ def run():
   try:
     result = subprocess.run(cmd, cwd = os.getcwd(), timeout=timeout, stdin=infile, capture_output=True)
     if result.returncode != 0:
-      raise Exception(f'Non-zero return code {result.returncode}')
+      print(f'WARNING: Non-zero return code {result.returncode}')
   except Exception as err:
     print(f'Failed ({err})')
     return

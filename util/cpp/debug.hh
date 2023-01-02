@@ -29,7 +29,12 @@ template<typename U> string to_string (set<U> e) {
 }
 
 template<typename U> string to_string (queue<U> e) {
-  return dbg_container(e);
+  vector<U> v;
+  while (!e.empty()) {
+    v.push_back(e.front());
+    e.pop();
+  }
+  return dbg_container(v);
 }
 
 template<typename U, typename V> string to_string (map<U, V> e) {
