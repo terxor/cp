@@ -269,3 +269,60 @@ Implementation points:
   computations.
 
 ***
+
+### Problem 1114D
+
+*Tags: DP*
+
+There are $n$ cells labelled $1$ to $n$ in a row. Initially cell $i$
+has color $a_i$.
+
+First choose an arbitrary cell, call it starting cell. Then, you can
+perform operations:
+
+In one operation, you can select a contiguous section
+of cells, **including the starting cell**, where each cell has **same color**, and change its color to any
+other color.
+
+Find the minimum number of operations to make colors of all cells same.
+
+Constraints:
+- $1 \le n \le 5000$
+- $1 \le a_i \le 5000$
+
+**Solution**
+
+Our initial segment is $[k, k]$ (if $k$ is starting cell) and
+in each operation we increase the size of max contiguous section having same color
+(and containing the starting cell).
+
+If current range is $[l, r]$, after an operation there are two choices:
+- Left expansion: It becomes $[l', r]$ where $l' \lt l$ and color changes to $a_{l'}$
+- Right expansion: It becomes $[l, r']$ where $r \lt r'$ and color changes to $a_{r'}$
+
+Let $L(l, r)$ be minimum number of operations to get 
+segment $[l, r]$ with color $a_l$ (last expansion towards left).
+
+Define $R(l, r)$ for right expansion similarly.
+
+Then,
+
+$$
+L(l, r) = \begin{cases}
+0 & \text{if } l = r \\
+  \min \begin{cases}
+  L(l + 1, r) + k & \text{where } k = 0 \text{ if } a_l = a_{l+1} \text{ else } 1 \\
+  R(l + 1, r) + k & \text{where } k = 0 \text{ if } a_l = a_r \text{ else } 1 \\
+  \end{cases} & \text{otherwise}
+\end{cases}
+$$
+
+The two subcases in second part correspond to whether last expansion was
+on left or right side. An operation is skipped is $a_l$ is
+the same as color obtained in last expansion.
+
+$R$ is very similar in definition.
+
+Final answer is $\min[L(1, n), R(1, n)]$
+
+***
