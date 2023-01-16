@@ -17,7 +17,7 @@ A week should have at least 1 holiday.
 
 Productivity is defined as:
 - $0$ for a holiday.
-- $a_k$ if nearest holiday is (or was) $k$ days after (or before)
+- $a_k$ if nearest holiday is $k$ days after (or was $k$ days before)
 
 Constraints:
 - $1 \le n \le 5000$
@@ -25,15 +25,15 @@ Constraints:
 
 **Solution**
 
-Since there is at least 1 holiday, let it keep it at day $1$.
+Since there is at least 1 holiday, we can keep it at day $1$.
 This also means that next week starts from a holiday. So, we
-have $n-1$ potential working days.
+have $n-1$ potential working days for the week.
 
 Let us call a consecutive stretch of working days as segment.
 
 If there is no other holiday, we get a segment of size $n-1$.
-If we keep a holiday at day $k$, we get a segment of size $k-2$
-we can then reduce this to a subproblem of size $n - k + 1$ (as we also include
+If we keep next holiday at day $k$ ($k \ge 2$), we get a segment of size $k-2$.
+We can then reduce this to a subproblem of size $n - k + 1$ (as we also include
 day $k$ as first day, which is holiday)
 
 Let $f_k$ denote the productivity of segment of size $k$.
@@ -58,7 +58,7 @@ Then:
 $$
 g_k = \begin{cases}
 0 & \text{if } k = 0 \\
-\max\limits_{0 \le i \le k-1}{f_i + g_{k-i-1}} & \text{otherwise}
+\max\limits_{0 \le i \le k-1}{(f_i + g_{k-i-1})} & \text{otherwise}
 \end{cases}
 $$
 
@@ -88,10 +88,10 @@ Constraints:
 **Solution**
 
 We will analyze second query closely. $s_{l, r}$ being
-substring to $t$ means:
+substring of $t$ means:
 - $s_{l, r}$ is sorted
 - Except for first and last distinct characters (let them be $u, v$) in $s_{l,r}$,
-  the frequency of all characters from $u+1$ to $v-1$ should be exactly as in $t$.
+  the frequency of all characters $u+1$ to $v-1$ should be exactly the same as in $t$.
   - For example, if $s_{l, r}$ is `abbbdde` then `b` should
     occur exactly $3$ times in overall string, `c` should
     occur $0$ times and `d` should occur $2$ times.
@@ -107,7 +107,7 @@ For example `abbbdde` will have $[(1, 1, \text{a}), (2, 4, \text{b}), (5, 6, \te
 
 We can use an ordered set structure for this (supporting fast $O(\lg n)$ searches)
 
-Then, for update query we may need to split / merge ranges (at most 3 ranges will be affected).
+Then, for update query we may need to split/merge ranges (at most 3 ranges will be affected).
 
 For second query, we will find range containing $l$. Then we will
 traverse ranges in order checking if they satisfy the requirements
