@@ -48,7 +48,7 @@ among paths of same length.
 
 Also, be careful about not adding value of intermediate vertex twice.
 
-*Tags: Graph, Shortest paths*
+*Tags: Graph, All pairs shortest paths*
 
 ***
 
@@ -113,7 +113,7 @@ We have to do some experiments.
   - Sum is $129$
   - Product is around $6.4 \cdot 10^8$
 
-But instead of adding last prime $29$, we can instead change
+But instead of adding last prime $29$, we can change
 $2$ to $4$ and $3$ to $9$ (without changing the co-prime status)
 to get a multiplier of $6$ for product and only adding $8$ to sum.
 
@@ -121,10 +121,9 @@ Hence, we can use $x = [4, 9, 5, 7, 11, 13, 17, 19, 23]$
 which will give sum as $108$ and product around $1.33 \cdot 10^9$
 which is well above bounds of $N$ in this problem.
 
-> Note: For such interactive problems, it is always better
-> to quickly code a local tester/judge. Otherwise, local
-> testing might become difficult.
+> Note: For such interactive problems, it may be helpful
+> to code a simple tester/judge to make local testing easier.
 
-*Tags: Number theory, Shortest paths*
+*Tags: Number theory, Chinese Remainder Theorem*
 
 ***
