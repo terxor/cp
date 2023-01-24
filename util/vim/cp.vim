@@ -2,6 +2,7 @@ nnoremap <leader>c :call Compile()<CR>
 nnoremap <leader>v :call Run()<CR>
 
 nnoremap <leader>1 :call LoadTemplate("cpp/template.cc")<CR>
+nnoremap <leader>2 :call LoadTemplate("cpp/template-ext.cc")<CR>
 
 " Normal paste in inline terminal
 tmap <C-v> <C-w>"+
