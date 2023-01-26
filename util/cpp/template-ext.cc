@@ -1,8 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
+namespace cptemplate {
 using Long = long long;
 using ii = pair<int, int>;
 using ll = pair<Long, Long>;
+using Vi = vector<int>;
+using Vii = vector<ii>;
+using Vl = vector<Long>;
+using Vll = vector<ll>;
+using Vs = vector<string>;
 
 #ifdef LOCAL
 #include <debug.hh>
@@ -21,7 +27,14 @@ using ll = pair<Long, Long>;
 #define ITER_3(a, b, c, v) for (auto& [a, b, c] : (v))
 #define ITER(...) MACRO4(__VA_ARGS__,ITER_3,ITER_2,ITER_1)(__VA_ARGS__)
 
+#define PB push_back
+#define LB(x, v) distance(begin(v), lower_bound(ALL(v), x))
 #define ALL(x) begin(x), end(x)
+#define TEST int _tc; input(_tc); while (_tc--)
+#define PERM(v) for (bool _flag = true; exchange(_flag, false) or next_permutation(ALL(v));)
+
+template<typename T> bool ckmin (T& a, const T& b) { return (b < a ? a = b, true : false); }
+template<typename T> bool ckmax (T& a, const T& b) { return (b > a ? a = b, true : false); }
 
 template<typename T> int len (const T& t) { return t.size(); }
 
@@ -38,9 +51,9 @@ template<typename T> T max (const vector<T>& v) {
 }
 
 template<typename T> vector<T> range (T l, T r, T step = 1) {
-  assert(r >= l);
-  vector<T> res(r - l + 1);
-  for (T i = l, j = 0; i <= r; i += step, j++) res[j] = i;
+  if (r < l) step *= -1;
+  vector<T> res;
+  for (T i = l; (r < l ? i >= r : i <= r); i += step) res.push_back(i);
   return res;
 }
 
@@ -102,14 +115,14 @@ template<typename T> void input_list (vector<T>& container) {
   for (auto& x : container) cin >> x;
 }
 
-struct Setup_io {
-    Setup_io() {
-        ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
-        cout << fixed << setprecision(11);
-    }
-} setup_io;
-
-/* --- */
+struct fast_io {
+  fast_io() {
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+    cout << fixed << setprecision(11);
+  }
+} _fast_io;
+}
+using namespace cptemplate;
 
 int main() {
 }
