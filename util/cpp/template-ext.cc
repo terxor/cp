@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-namespace cptemplate {
+namespace cptemplate { // {{{
 using Long = long long;
 using ii = pair<int, int>;
 using ll = pair<Long, Long>;
@@ -122,7 +122,7 @@ struct fast_io {
   }
 } _fast_io;
 }
-using namespace cptemplate;
+using namespace cptemplate; // }}}
 
 int main() {
 }
