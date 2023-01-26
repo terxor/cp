@@ -10,20 +10,57 @@ using ll = pair<Long, Long>;
 #define dbg(...) ;
 #endif
 
+#define MACRO4(_1,_2,_3,_4,NAME,...) NAME
+#define FOR_0(b) for (int _loopvar = 0; _loopvar < int(b); _loopvar++)
+#define FOR_1(i, b) for (int i = 0; i < int(b); i++)
+#define FOR_2(i, a, b) for (int i = int(a); i < int(b); i++)
+#define FOR_3(i, a, b, s) for (int i = int(a); i < int(b); i += int(s))
+#define FOR(...) MACRO4(__VA_ARGS__,FOR_3,FOR_2,FOR_1,FOR_0)(__VA_ARGS__)
+#define ITER_1(a, v) for (auto& a : (v))
+#define ITER_2(a, b, v) for (auto& [a, b] : (v))
+#define ITER_3(a, b, c, v) for (auto& [a, b, c] : (v))
+#define ITER(...) MACRO4(__VA_ARGS__,ITER_3,ITER_2,ITER_1)(__VA_ARGS__)
+
 #define ALL(x) begin(x), end(x)
 
 template<typename T> int len (const T& t) { return t.size(); }
 
-template<typename T> vector<T> sorted (const vector<T>& v, bool reverse = false) {
+template<typename T> T sum (const vector<T>& v) {
+  return accumulate(v.begin(), v.end(), 0);
+}
+
+template<typename T> T min (const vector<T>& v) {
+  return *min_element(v.begin(), v.end());
+}
+
+template<typename T> T max (const vector<T>& v) {
+  return *max_element(v.begin(), v.end());
+}
+
+template<typename T> vector<T> range (T l, T r, T step = 1) {
+  assert(r >= l);
+  vector<T> res(r - l + 1);
+  for (T i = l, j = 0; i <= r; i += step, j++) res[j] = i;
+  return res;
+}
+
+template<typename U, typename F> auto mapvec (const vector<U>& u, F f) -> vector<decltype(f(std::declval<U>()))> {
+  using V = decltype(f(std::declval<U>()));
+  vector<V> res;
+  for (auto& e : u) res.push_back(f(e));
+  return res;
+}
+
+template<typename T> T sorted (const T& v, bool reverse = false) {
   auto u = v;
   if (reverse) sort(u.rbegin(), u.rend());
   else sort(u.begin(), u.end());
   return u;
 }
 
-template<typename T> vector<T> reversed (const vector<T>& v) {
+template<typename T> T reversed (const T& v) {
   auto u = v;
-  reverse(v.begin(), v.end());
+  reverse(u.begin(), u.end());
   return u;
 }
 
@@ -36,14 +73,18 @@ template<typename T> vector<pair<T, int>> grouped (const vector<T>& v) {
   return res;
 }
 
-void print() { cout << '\n'; }
+vector<pair<char, int>> grouped (const string& s) {
+  return grouped(vector<char>(s.begin(), s.end()));
+}
+
+void print() { cout << endl; }
 template<typename U, typename... V> void print (const U& u, const V& ...v) {
   cout << u;
   if (sizeof...(v)) cout << ' ';
   print(v...);
 }
 
-template<typename U> void printList(U container, char sep = ' ') {
+template<typename U> void print_list(U container, char sep = ' ') {
   int s = len(container);
   for (auto& e : container) cout << e << (--s ? sep : '\n');
 }
@@ -57,7 +98,7 @@ template<typename U, typename ...V> void input (U& u, V& ...v) {
   cin >> u; input(v...);
 }
 
-template<typename T> void inputList (vector<T>& container) {
+template<typename T> void input_list (vector<T>& container) {
   for (auto& x : container) cin >> x;
 }
 
