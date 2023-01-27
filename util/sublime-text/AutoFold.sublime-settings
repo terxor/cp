@@ -1,0 +1,18 @@
+{
+  "attributes" : [
+  ],
+  "tags": [
+  ],
+  "regexps": [
+    "(?<={{{)(.|\n)*?(?=}}})"
+  ],
+
+  "extensions": [
+    "cc",
+    "cpp",
+    "cxx",
+  ],
+
+  "runOnLoad": true,
+  "runOnSave": true
+}
