@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+namespace cptemplate { // {{{
 using Long = long long;
 using ii = pair<int, int>;
 using ll = pair<Long, Long>;
@@ -9,6 +10,8 @@ using ll = pair<Long, Long>;
 #else
 #define dbg(...) ;
 #endif
+}
+using namespace cptemplate; // }}}
 
 int main() {
   ios_base::sync_with_stdio(0);
