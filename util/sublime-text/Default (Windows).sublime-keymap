@@ -1,0 +1,56 @@
+[
+	{
+    "keys": ["alt+shift+2"],
+    "command": "set_layout",
+    "args":
+	    {
+	    	/* 	First construct grid by defining breakpoints for rows
+	    		and colums */
+	   		/* Define breakpoints for columns: n breakpoints -> n - 1 columns */
+	        "cols": [ 0.0, 0.75, 1.0 ],
+	        /* Define breakpoints for rows: n breakpoints -> n - 1 rows */
+	        "rows": [ 0.0, 0.5, 1.0 ],
+
+	        /* Now add cells (number of cells <= grid size) 
+				Each entry is (x1, y1, x2, y2)
+				Note that +y axis goes downwards
+	        */
+	        "cells": [
+	            [ 0, 0, 1, 2 ],
+	            [ 1, 0, 2, 1 ],
+	            [ 1, 1, 2, 2 ]
+	        ]
+	    }
+	},
+
+	{
+	    "keys": ["ctrl+r"],
+	    "command": "build", "args": {
+       		"variant": "run-only"
+	    },
+	},
+	{
+	    "keys": ["ctrl+b"],
+	    "command": "build", "args": {
+       		"variant": "compile-and-run"
+	    },
+	},
+	{
+	    "keys": ["ctrl+1"],
+	    "command": "insert_snippet", "args": {
+       		"name": "Packages/User/template-cpp.sublime-snippet"
+	    },
+	},
+	{
+	    "keys": ["ctrl+2"],
+	    "command": "insert_snippet", "args": {
+       		"name": "Packages/User/template-ext-cpp.sublime-snippet"
+	    },
+	},
+	{
+	    "keys": ["ctrl+3"],
+	    "command": "insert_snippet", "args": {
+       		"name": "Packages/User/template-java.sublime-snippet"
+	    },
+	}
+]

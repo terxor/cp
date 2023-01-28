@@ -1,0 +1,12 @@
+{
+  "variants": [
+    {
+      "name" : "compile-and-run",
+      "shell_cmd": "py %CP_UTILS%/cp.py $file_name compile && py %CP_UTILS%/cp.py $file_name run --infile in.txt --outfile out.txt"
+    },
+    {
+      "name" : "run-only",
+      "shell_cmd": "py %CP_UTILS%/cp.py $file_name run --infile in.txt --outfile out.txt"
+    }
+  ]
+}
