@@ -46,7 +46,7 @@ from children $1$ to $i$.
 - We will compute $g(i, x)$ by using all values $y$ that can be
   obtained from $v_i$:
   - $g(i, x + y) \leftarrow g(i, x + y) + g(i, x) \cdot [f(v_i, y, 0) + f(v_i, y, 1)]$
-  - Bounds are important here: $y$ will be from $0$ to $c_{v_i}$
+  - Bounds are important here for time complexity analysis: $y$ will be from $0$ to $c_{v_i}$
     and $x$ will be from $0$ to $c_{v_1} + \ldots + c_{v_{i-1}}$.
   - Let $c_{v_i} = t_i$ for convenience.
     For $i$, we will be doing $(1 + t_i) \cdot (1 + t_1 + \ldots + t_{i-1})$ operations.
@@ -66,6 +66,7 @@ from children $1$ to $i$.
     links between each node in child $i$ and each node in children $1,\ldots,i-1$ combined.
     Also notice that if this is for some subtree $u$, we will never
     make links among nodes of subtree $u$ as we move up to the parents.
+  - Hence, the overall time complexity will be $O(n^2)$ (as opposed to $O(n^3)$, which might be deduced from first glance)
 
 For $f(u, k, 1)$, the computation will be similar except:
 - There will be always be $1$ component containing $u$.
