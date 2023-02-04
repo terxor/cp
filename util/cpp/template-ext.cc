@@ -22,6 +22,10 @@ using Vs = vector<string>;
 #define FOR_2(i, a, b) for (int i = int(a); i < int(b); i++)
 #define FOR_3(i, a, b, s) for (int i = int(a); i < int(b); i += int(s))
 #define FOR(...) MACRO4(__VA_ARGS__,FOR_3,FOR_2,FOR_1,FOR_0)(__VA_ARGS__)
+#define RFOR_1(i, b) for (int i = int(b) - 1; i >= 0; i--)
+#define RFOR_2(i, a, b) for (int i = int(b) - 1; i >= int(a); i--)
+#define RFOR_3(i, a, b, s) for (int i = int(b) - 1; i >= int(a); i -= int(s))
+#define RFOR(...) MACRO4(__VA_ARGS__,RFOR_3,RFOR_2,RFOR_1)(__VA_ARGS__)
 #define ITER_1(a, v) for (auto& a : (v))
 #define ITER_2(a, b, v) for (auto& [a, b] : (v))
 #define ITER_3(a, b, c, v) for (auto& [a, b, c] : (v))
@@ -90,29 +94,30 @@ vector<pair<char, int>> grouped (const string& s) {
   return grouped(vector<char>(s.begin(), s.end()));
 }
 
+template<typename T> vector<vector<T>> vector2(int n, int m = 0, T val = 0) {
+  return vector<vector<T>>(n, vector<T>(m, val));
+}
+
 void print() { cout << endl; }
+template<typename U> void print(vector<U> container, char sep = ' ') {
+  for (int i = 0; i < len(container); i++) {
+    cout << container[i];
+    if (i < len(container) - 1) cout << sep;
+  }
+  print();
+}
 template<typename U, typename... V> void print (const U& u, const V& ...v) {
   cout << u;
   if (sizeof...(v)) cout << ' ';
   print(v...);
 }
 
-template<typename U> void print_list(U container, char sep = ' ') {
-  int s = len(container);
-  for (auto& e : container) cout << e << (--s ? sep : '\n');
+template<typename T> void input (vector<T>& container) {
+  for (auto& x : container) cin >> x;
 }
-
-template<typename T> vector<vector<T>> vec2D (int n = 0, int m = 0, int default_value = 0) {
-  return vector<vector<T>>(n, vector<T>(m, default_value));
-}
-
 void input() {}
 template<typename U, typename ...V> void input (U& u, V& ...v) {
   cin >> u; input(v...);
-}
-
-template<typename T> void input_list (vector<T>& container) {
-  for (auto& x : container) cin >> x;
 }
 
 struct fast_io {
