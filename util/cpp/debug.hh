@@ -4,6 +4,10 @@ using namespace std;
 template<typename U> string dbg_container (U);
 template<typename U, typename V> string to_string (pair<U, V>);
 
+string to_string (const double& x) {
+  return std::to_string(x);
+}
+
 string to_string (const int& x) {
   return std::to_string(x);
 }
