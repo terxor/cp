@@ -140,36 +140,35 @@ Initially you are at index $1$.
 
 Constraints: $1 \le n, a_i \le 10^5$
 
-**Solution**
+**Solution 1**
 
-Let $f_i$ be: Minimum jumps required to reach index $i$ from index $1$
+Let $g_i$ be the max value reachable in $i$ jumps.
 
-Then $f_i = 1 + \min(f_j)$ $\forall$ $
+We will show a strategy to reach $g_i$ in $i$ moves.
+- Assume that you have reached $g_{i-1}$ in $i-1$ moves. Base case is $g_0 = 1$.
+- Since $g_i$ is reachable in $i$ moves, there must be some $j \le g_{i-1}$
+  such that $j + a_j \ge g_i$.
+  - In fact, there won't exist any $j$ such that
+    $j + a_j \gt g_i$ (because it will contradict the definition).
+  - Hence, finding $j$ such that $j + a_j$ is *maximum* will result in $g_i = j + a_j$.
 
-Let's use a greedy strategy for computing $f_i$:
-$f_i = 1 + min(f_j)$ such that $a_j + j \ge i$ and $j$ is minimum possible
-Note that the term $a_j + j$ denotes the max reachable index from index $j$.
+To find the optimal solution, keep increasing $k$ (starting from $0$)
+until $g_k = n$.
 
-Base case $f_1 = 0$ and,
-$f_i = \infty$ if we can't reach index $i$ by any means
+**Solution 2**
 
-*Claim 1*: $f_i \le f_j$ if $i \lt j$
+Let $f_i$ be minimum jumps required to reach index $i$ from index $1$.
+Then,
+- $f_i = 0$ if $i = 0$
+- $f_i = 1 + min(f_j)$ where $j \lt i$ and $a_j + j \ge i$
+  - If no such $j$ exists, then we can't reach $i$ from $1$
 
-*Proof*: 
+We can apply a greedy strategy here: for $f_i = 1 + min(f_j)$, choose the *minimum* $j$
+out of all those that satisfies $j \lt i$ and $a_j + j \ge i$.
 
-Suppose $f_i \gt f_j$. Now consider the sequence of optimal jumps to reach index $j$ from $1$ as: $x_1,x_2,\ldots,x_k$ where $x_1 = 1$ and $x_k = j$.
-Now, it guaranteed that there exists some $p, 1 \le p \lt k$ such that $x_p \le i \lt x_{p+1}$ since $x_1 \lt x_2 \ldots \lt x_k$. Now, we can reach index $i$ in atmost $p+1$ moves and since $p < k$, this implies $p+1 \le k$ which contradicts $f_i \gt f_j$
-
-*Claim 2*: The greedy strategy for $f$ defined above is optimal
-
-*Proof*:
-
-Suppose $k$ is the minimum index from which we can reach index $i$. Suppose $\exists x, k \lt x \lt i$ which is some other index which is the better choice, i.e, $g_k > g_x$ then we could reach index $i$ faster. But by claim 1, $g_k \le g_x$. Hence proved.
-
-Implementation Strategy:
-Define another array $b_i = max(a_i + i, b_{i-1}) \quad\forall i, 1 \lt i \le n$.
-(For $i = 1$, we have $b_1 = a_1 + 1$)
-To find the least index from which index $i$ can be reached, start from $b_i$ and iterate down (possibly to 1).
+If we can show that $f_u \le f_v$ if $u \lt v$, then the above statement becomes obvious.
+Informally, visualize the solution for $v$ (in $f_v$ jumps) and since $u \lt v$, we will jump over (or stopping at) $u$ at
+some point. If we simply stop at that point, we reach $u$ in not more than $f_v$ jumps.
 
 ***
 
