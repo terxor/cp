@@ -13,6 +13,11 @@ langs = {
     'run': lambda file, name, ext: f'{name}',
     'compile': lambda file, name, ext: f'g++ {file} -o {name} -std=c++17 -O2 -Wall -Wextra -DLOCAL'
   },
+  'Java': {
+    'ext': ['java'],
+    'run': lambda file, name, ext: f'java {name}',
+    'compile': lambda file, name, ext: f'javac {file}'
+  },
 }
 
 def run():
@@ -73,7 +78,10 @@ def source_file(s):
   try:
     i = s.rindex('.')
     name, ext = s[:i], s[i+1:]
-    if ext not in all_exts(): raise Exception()
+    exts = all_exts()
+    if ext not in exts:
+      print(f"Extension {ext} not supported. Supported extensions are: {exts}")
+      raise Exception()
     return [s, name, ext]
   except:
     raise TypeError()
