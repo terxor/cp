@@ -11,8 +11,14 @@ using ll = pair<Long, Long>;
 #define dbg(...) ;
 #endif
 }
-using namespace cptemplate; // }}}
+using namespace cptemplate;
 
+void solution();
 int main() {
   ios_base::sync_with_stdio(0);
+  cin.tie(nullptr);
+  solution();
+}// }}}
+
+void solution() {
 }
