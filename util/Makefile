@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++20 -O2 -Wall -Wextra -DLOCAL -I${CP_UTILS}/cpp
 
-TARGET=.exec
+TARGET=exec
 SRC_CODE=src.cc
 
 all: run
