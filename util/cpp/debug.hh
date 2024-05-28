@@ -1,20 +1,8 @@
 using namespace std;
-#define dbg(...) cerr << "[" << __func__ << ":" << __LINE__ << "] " << #__VA_ARGS__ << " =" << dbg_str(__VA_ARGS__)
+#define dbg(...) cerr << "\033[31m[" << __func__ << ":" << __LINE__ << "] " << #__VA_ARGS__ << " =" << dbg_str(__VA_ARGS__) << "\033[0m"
 
 template<typename U> string dbg_container (U);
 template<typename U, typename V> string to_string (pair<U, V>);
-
-string to_string (const double& x) {
-  return std::to_string(x);
-}
-
-string to_string (const int& x) {
-  return std::to_string(x);
-}
-
-string to_string (const long long& x) {
-  return std::to_string(x);
-}
 
 string to_string (const char* e) {
   return "\"" + string(e) + "\"";

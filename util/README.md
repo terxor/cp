@@ -1,6 +1,33 @@
 # Utilities
 
-## Compile/run utility
+## C++ template
+
+Calling `cpinit.sh` from a directory will create 6 directories named task1,...,task6.
+(if you really want more, go and change the script).
+
+Within each directory, there will your main source code `src.cc` and a `Makefile`.
+
+The normal operation is as follows:
+- create a file `case1.in` (you can name it anything, ending with `.in`)
+- write code
+- `make`
+
+To run your code against multiple cases, create multiple `.in` files
+
+To test your code (simple output comparison testing):
+- create corresponding `.out` files containing expected output
+- `make test`
+
+If you want to run your program interactively, then just do `./exec`.
+
+## C++ debug helper
+
+`debug.hh` can be used for easy print style local debugging.
+
+Template for C++ includes this file.
+To enable usage, add `cpp` directory to `CPLUS_INCLUDE_PATH`.
+
+## Legacy Compile/run utility
 
 `cp.py` is a convenience CLI utility.
 This can be integrated with your text editor
@@ -37,16 +64,5 @@ This will bind:
   - By default it loads `cpp/template.cc`.
   - More templates can be added using same concept.
 
-## C++ debug helper
-
-`debug.hh` can be used for easy print style local debugging.
-
-Template for C++ includes this file.
-But you need to add `cpp` directory to `CPLUS_INCLUDE_PATH`.
-
-For Windows, you can do this:
-```
-setx CPLUS_INCLUDE_PATH [base-path-for-repo]\cp\util\cpp
-```
 
 ***
