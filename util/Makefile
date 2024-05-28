@@ -1,52 +1,50 @@
-# Compiler and flags for C++ source
 CXX = g++
-CXXFLAGS = -std=c++11 -O2
+CXXFLAGS = -std=c++20 -O2 -Wall -Wextra -DLOCAL -I${CP_UTILS}/cpp
 
-# Default target
+TARGET=.exec
+SRC_CODE=src.cc
+
 all: run
 
-# Compile C++ source
-compile: src.cpp
-	@if [ -f "src.cpp" ]; then \
-		$(CXX) $(CXXFLAGS) -o program src.cpp; \
+$(TARGET): $(SRC_CODE)
+	@if [ -f "$(SRC_CODE)" ]; then \
+		$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRC_CODE); \
 	else \
-		echo "No C++ source file found."; \
+		echo "Source file $(SRC_CODE) not found."; \
 	fi
 
-# Run the compiled program
-run: compile
-	@echo "Running the compiled program"
-	@if [ -f "program" ]; then \
-		./program; \
+run: $(TARGET)
+	@if ls *.in 1> /dev/null 2>&1; then \
+		for infile in *.in; do \
+			base=$$(basename $$infile .in); \
+			echo "\033[1;30m--- CASE $$base ---\033[0m"; \
+			./$(TARGET) < $$infile; \
+		done; \
 	else \
-		echo "No program to run."; \
+		echo "No input files (*.in) found. Nothing to run against."; \
 	fi
 
-# Test the compiled program
-test: compile
-	@if [ ! -f '*.in' ] || [ ! -f '*.out' ]; then \
-		echo "No tests to run."; \
-		exit 0; \
+test: $(TARGET)
+	@if ls *.in 1> /dev/null 2>&1; then \
+		for infile in *.in; do \
+			base=$$(basename $$infile .in); \
+			outfile=$$base.out; \
+			if [ ! -f $$outfile ]; then \
+				echo "Error: Output file '$$outfile' not found for input '$$infile'"; \
+				continue; \
+			fi; \
+			./$(TARGET) < $$infile > output.out 2> /dev/null; \
+			if diff -q output.out $$outfile > /dev/null; then \
+				echo "TEST: $$base \033[0;32mOK\033[0m"; \
+			else \
+				echo "TEST: $$base \033[0;31mFAILED\033[0m"; \
+				diff -u $$outfile output.out | ydiff -s; \
+			fi; \
+		done; \
+		rm -f output.out; \
+	else \
+		echo "No input files (*.in) found. No tests to run."; \
 	fi
-	@echo "Running tests for C++ source"
-	@for infile in *.in; do \
-		base=$$(basename $$infile .in); \
-		outfile=$$base.out; \
-		if [ ! -f $$outfile ]; then \
-			echo "Error: Output file '$$outfile' not found for input '$$infile'"; \
-			continue; \
-		fi; \
-		echo "Running test $$base"; \
-		./program < $$infile > output.out; \
-		if diff -q output.out $$outfile > /dev/null; then \
-			echo "Test $$base passed"; \
-		else \
-			echo "Test $$base failed"; \
-			diff output.out $$outfile; \
-		fi; \
-	done; \
-	rm -f output.out
 
-# Clean up generated files
 clean:
-	@rm -f program
+	@rm -f $(TARGET)
