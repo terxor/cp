@@ -2,10 +2,11 @@
 
 ## C++ template
 
-Calling `cpinit.sh` from a directory will create 6 directories named task1,...,task6.
-(if you really want more, go and change the script).
+Place `cpinit` somewhere in your path for convenience.
 
-Within each directory, there will your main source code `src.cc` and a `Makefile`.
+Calling `cpinit [task]` from a directory will create a directory named `[task]`
+
+In this directory, there will your main source code `src.cc` and a `Makefile`.
 
 The normal operation is as follows:
 - create a file `case1.in` (you can name it anything, ending with `.in`)

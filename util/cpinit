@@ -1,6 +1,12 @@
 #!/bin/bash
 
-# Check if CP_UTILS environment variable is set
+task_name=$1
+
+if [ -z "$task_name" ]; then
+  echo "Usage: cpinit [task_name]"
+  exit 1
+fi
+
 if [ -z "$CP_UTILS" ]; then
   echo "Error: CP_UTILS environment variable is not set."
   exit 1
@@ -15,14 +21,5 @@ if [ ! -d "$template_dir" ]; then
   exit 1
 fi
 
-# Create 5 copies of the template directory
-for i in {1..5}; do
-  target_dir="task$i"
-  cp -r "$template_dir" "$target_dir"
-  if [ $? -ne 0 ]; then
-    echo "Error: Failed to copy template to $target_dir"
-    exit 1
-  fi
-done
-
+cp -r "$template_dir" "$task_name"
 exit 0
