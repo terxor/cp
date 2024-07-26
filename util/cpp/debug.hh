@@ -28,6 +28,15 @@ template<typename U> string to_string (set<U> e) {
   return dbg_container(e);
 }
 
+template<typename U> string to_string (deque<U> e) {
+  vector<U> v;
+  while (!e.empty()) {
+    v.push_back(e.front());
+    e.pop_front();
+  }
+  return dbg_container(v);
+}
+
 template<typename U> string to_string (queue<U> e) {
   vector<U> v;
   while (!e.empty()) {
